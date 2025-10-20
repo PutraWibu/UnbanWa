@@ -14,7 +14,7 @@
   --radius:14px;
   --max-w:520px;
 }
-*{box-sizing:border-box}
+*{box-sizing:border-box;}
 html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial;color:#e6eef6;background:linear-gradient(180deg,var(--bg-1),var(--bg-2));-webkit-font-smoothing:antialiased;overflow-x:hidden;}
 .app{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;flex-direction:column;}
 
@@ -48,7 +48,7 @@ html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,Segoe U
   display:none;
   flex-direction:column;
   gap:8px;
-  width:150px;
+  width:180px;
   box-shadow:0 8px 30px rgba(0,0,0,.4);
 }
 .menu a{
@@ -114,7 +114,7 @@ h1.title{text-align:center;margin:0 0 8px;font-size:20px;}
 p.lead{text-align:center;margin:0 0 16px;color:var(--muted);font-size:14px;}
 .form{display:grid;gap:10px;}
 label{font-size:13px;color:var(--muted);margin-bottom:6px;}
-input[type="text"],select{
+input[type="text"],select,input[type="password"]{
   width:100%;padding:12px;
   border-radius:10px;
   border:1px solid rgba(255,255,255,.04);
@@ -124,7 +124,7 @@ input[type="text"],select{
   font-size:15px;
   transition:0.3s all;
 }
-input[type="text"]:focus,select:focus{border-color:var(--accent);box-shadow:0 0 8px rgba(6,182,212,.4);}
+input[type="text"]:focus,select:focus,input[type="password"]:focus{border-color:var(--accent);box-shadow:0 0 8px rgba(6,182,212,.4);}
 .row{display:flex;gap:10px;}
 .col{flex:1;}
 .note{font-size:13px;color:var(--muted);text-align:center;margin-top:12px;}
@@ -164,14 +164,14 @@ input[type="text"]:focus,select:focus{border-color:var(--accent);box-shadow:0 0 
 <div id="menu" class="menu">
   <a href="#" id="homeLink">🛠️ Unban Tool</a>
   <a href="#" id="tipsLink">🛡️ Anti-Ban Tips</a>
-  <a href="#" id="thanksLink">❤️‍🩹 Thanks To</a>
+  <a href="#" id="ThnksToLink">Thanks To ❤️‍🩹</a>
 </div>
 
-<!-- Splash / Password -->
-<div id="splash" class="splash">
-  <div class="brand">VYN TOOLS UNBANNED</div>
-  <p>Password: <strong>PUTRAXCRAK</strong></p>
-  <footer>Tols unban gratis untuk publik 🥺</footer>
+<!-- Splash / password -->
+<div id="splash" class="splash" aria-hidden="false">
+  <div class="brand">VYN TOLS UNBANNED</div>
+  <p>Password: PUTRAXCRAK</p>
+  <footer>Tols unban Gratis untuk public 🥺</footer>
   <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
     <div class="input-row">
       <input id="passwordInput" type="password" placeholder="Masukkan password" aria-label="password">
@@ -180,14 +180,14 @@ input[type="text"]:focus,select:focus{border-color:var(--accent);box-shadow:0 0 
     <div id="pwMsg" style="color:#f87171;font-size:13px;height:18px;"></div>
   </div>
   <div class="buy-access">SEMUA GRATIS BY : PUTRAMODS</div>
-  <div class="footer-box">© 2025 PutraMods Developer. All rights reserved.</div>
+  <div class="footer-box">© 2025 PutraaMods Developer. All rights reserved.</div>
 </div>
 
-<!-- Home Page -->
+<!-- Main Page -->
 <div id="homePage" class="container" style="display:none;">
   <main class="card">
-    <h1 class="title">VYN TOOLS UNBAN WHATSAPP</h1>
-    <p class="lead">Membantu menyelesaikan masalah akun WhatsApp yang terkena banned secara tiba-tiba 😁</p>
+    <h1 class="title">VYN TOLS UNABNNED WHATSAPP</h1>
+    <p class="lead">Membantu menyelesaikan masalah terkena banned secara tiba tiba 😁</p>
     <form id="unbanForm" class="form" onsubmit="return false;">
       <div>
         <label for="name">Nama Anda</label>
@@ -210,55 +210,61 @@ input[type="text"]:focus,select:focus{border-color:var(--accent);box-shadow:0 0 
       </div>
       <div id="feedback" class="result"></div>
       <div class="note">
-        Setelah klik <strong>Kirim Banding</strong>, Anda akan diarahkan ke Gmail untuk mengirim email ke tim WhatsApp.
+        Setelah klik <strong>Kirim Banding</strong>, Anda akan otomatis diarahkan ke Gmail. 
+        Cukup tekan <strong>Send</strong> untuk mengirim.  
         <br><br>
-        ✍🏻 <em>Catatan: Jangan jual-belikan website ini. Tools ini gratis dari <strong>VYN GROUP</strong>. Untuk pertanyaan hubungi Telegram Admin <strong>@PutraaTzyh</strong>.</em>
-        <br><br>
-        ✨ Kami hanya membantu mempercepat proses unbanned. Tidak menjamin 100% berhasil. Jika akun Anda permanen, tunggu 1–2 bulan sebelum mencoba lagi.
-        <br><br>
-        Salam hangat dari <strong>VYN GROUP</strong> 🙏🏻👋🏻
+        ✍🏻 <em>Catatan:  Jangan dijual belikan website ini, semua gratis dari <strong>VYN GROUP</strong>. Hubungi admin @PutraaTzyh</em>
       </div>
     </form>
-    <div class="footer-box">© 2025 PutraMods Developer. All rights reserved.</div>
+    <div class="footer-box">© 2025 PutraaMods Developer. All rights reserved.</div>
   </main>
 </div>
 
 <!-- Tips Page -->
 <div id="tipsPage" class="container" style="display:none;">
   <main class="card">
-    <h1 class="title">🛡️ Tips Agar Tidak Terkena Banned</h1>
-    <p class="lead">Berikut beberapa tips agar akun WhatsApp Anda aman digunakan setiap hari:</p>
+    <h1 class="title">🛡️ Tips agar anda terhindar dari banned</h1>
+    <p class="lead">Berikut beberapa tips penting agar akun WhatsApp Anda tidak mudah terkena banned:</p>
     <ul style="color:#cbd5e1;font-size:14px;line-height:1.6;">
-      <li>Gunakan aplikasi <strong>WhatsApp resmi ✅</strong> dari Play Store / App Store.</li>
-      <li>Jangan melakukan spam atau menggunakan bot WhatsApp di nomor pribadi.</li>
-      <li>Hindari aplikasi modifikasi (MOD). Gunakan WhatsApp Beta hanya jika paham risikonya.</li>
+      <li>Gunakan Aplikasi <strong>WhatsApp Resmi ✅</strong> dari AppStore / Playstore</li>
+      <li>Jangan melakukan spam / menggunakan bot whatsapp di nomor pribadi</li>
+      <li>Gunakan Aplikasi WhatsApp beta (Android) dengan hati-hati, data bisa hilang tiap bulan ♻️</li>
     </ul>
-    <footer><em>❗ Jika Anda merasa dibanned tanpa sebab, hubungi kami di Telegram <strong>@PutraaTzyh</strong>.</em></footer>
+    <footer><em>Jika kasus anda karena pihak lain, hubungi @PutraaTzyh</em></footer>
     <div class="footer-box">© 2025 PutraMods Official. All rights reserved.</div>
   </main>
 </div>
 
 <!-- Thanks To Page -->
-<div id="thanksPage" class="container" style="display:none;">
+<div id="ThnksTo" class="container" style="display:none;">
   <main class="card">
     <h1 class="title">THANKS TO 🥺✍🏻</h1>
-    <p class="lead">Tidak ada yang tidak mungkin di dunia ini<br><br> - XynnHd</p>
-    <div class="note">
-      <div class="title">MEMBER VYN GROUP ✨</div>
-      <em>PutraMods (Leader)</em><br>
-      <em>RendiSec (Wakil)</em><br>
-      <em>XynnHd (Pendiri)</em><br>
-      <em>XynaTzy! (Pendiri)</em><br>
-      <em>Mr.L (Pendiri)</em><br><br>
-      <p>JooTzy</p>
-      <p>FirmanXploit</p>
-      <p>PimzExploit</p>
-      <p>ElainaWangsaff</p>
-      <p>Yazime</p>
-      <p>Obinxz</p>
-      <p>HanapiMods</p>
+    <p class="lead">Tidak ada yang tidak mungkin di dunia ini<br>-XynnHd</p>
+    <div class="note" style="display:flex;flex-direction:column;gap:12px;">
+      <div>
+        <div class="title">LEADER & PENDIRI VYN GROUP ✨</div>
+        <ul>
+          <li><em>PutraMods (Leader)</em></li>
+          <li><em>RendiSec (Wakil)</em></li>
+          <li><em>XynnHd (Pendiri)</em></li>
+          <li><em>XynaTzy! (Pendiri)</em></li>
+          <li><em>Mr.L (Pendiri)</em></li>
+        </ul>
+      </div>
+      <div>
+        <div class="title">MEMBER INTI ✨</div>
+        <ul class="member-list">
+          <li>JooTzy</li>
+          <li>FirmanXploit</li>
+          <li>PimzExploit</li>
+          <li>ElainaWangsaff</li>
+          <li>Yazime</li>
+          <li>Obinxz</li>
+          <li>HanapiMods</li>
+        </ul>
+      </div>
     </div>
-    <footer>Terima kasih telah menemani kami sejak 2019. Kalian adalah bagian dari perjalanan VYN Group 💙</footer>
+    <footer style="margin-top:16px;">Kalian adalah member terbaik, Terimakasih telah menemani kami dari 2019 hingga saat ini.</footer>
   </main>
 </div>
 
@@ -270,7 +276,7 @@ const splash=document.getElementById('splash');
 const navbar=document.getElementById('navbar');
 const homePage=document.getElementById('homePage');
 const tipsPage=document.getElementById('tipsPage');
-const thanksPage=document.getElementById('thanksPage');
+const thnksPage=document.getElementById('ThnksTo');
 const pwInput=document.getElementById('passwordInput');
 const pwBtn=document.getElementById('pwBtn');
 const pwMsg=document.getElementById('pwMsg');
@@ -278,30 +284,22 @@ const menuBtn=document.getElementById('menuBtn');
 const menu=document.getElementById('menu');
 const homeLink=document.getElementById('homeLink');
 const tipsLink=document.getElementById('tipsLink');
-const thanksLink=document.getElementById('thanksLink');
+const thnksLink=document.getElementById('ThnksToLink');
 
-function showPage(page){
-  [homePage,tipsPage,thanksPage].forEach(p=>p.style.display='none');
-  page.style.display='block';
-  menu.style.display='none';
-}
+function showHome(){homePage.style.display='block'; tipsPage.style.display='none'; thnksPage.style.display='none'; menu.style.display='none';}
+function showTips(){homePage.style.display='none'; tipsPage.style.display='block'; thnksPage.style.display='none'; menu.style.display='none';}
+function showThnks(){homePage.style.display='none'; tipsPage.style.display='none'; thnksPage.style.display='block'; menu.style.display='none';}
 
 pwBtn.addEventListener('click',()=>{
   const v=pwInput.value.trim();
-  if(v===TRUE_PASSWORD){
-    splash.style.display='none';
-    navbar.style.display='flex';
-    showPage(homePage);
-  }else{
-    pwMsg.textContent='Password salah — coba lagi.';
-  }
+  if(v===TRUE_PASSWORD){splash.style.display='none'; navbar.style.display='flex'; showHome();}
+  else{pwMsg.textContent='Password salah — coba lagi.';}
 });
 pwInput.addEventListener('keydown',e=>{if(e.key==='Enter')pwBtn.click();});
-
 menuBtn.addEventListener('click',()=>menu.style.display=menu.style.display==='flex'?'none':'flex');
-homeLink.addEventListener('click',()=>showPage(homePage));
-tipsLink.addEventListener('click',()=>showPage(tipsPage));
-thanksLink.addEventListener('click',()=>showPage(thanksPage));
+homeLink.addEventListener('click',showHome);
+tipsLink.addEventListener('click',showTips);
+thnksLink.addEventListener('click',showThnks);
 
 // Form Unban
 const nameEl=document.getElementById('name');
@@ -313,10 +311,10 @@ const clearBtn=document.getElementById('clearBtn');
 
 function normalizePhone(raw){
   if(!raw)return null;
-  let s=raw.replace(/[\s()-]/g,'');
+  let s=raw.replace(/[s()-]/g,'');
   if(/^0[0-9]+$/.test(s))s='+62'+s.slice(1);
   if(/^62[0-9]+$/.test(s))s='+'+s;
-  if(/^\+[0-9]+$/.test(s))return s;
+  if(/^+[0-9]+$/.test(s))return s;
   return null;
 }
 
@@ -338,32 +336,32 @@ sendBtn.addEventListener('click',()=>{
   feedback.style.display='block';
   feedback.style.color='#0ef';
   feedback.textContent='Menyiapkan email banding...';
-
   const band=bandEl.value;
   const subject=`Permohonan Banding Pemblokiran Akun WhatsApp (${num})`;
   let bodyText='';
   if(band==='permanen'){
     bodyText=`Halo Tim WhatsApp,
 
-Saya ingin mengajukan banding atas pemblokiran permanen terhadap akun WhatsApp saya (${num}). Saya yakin pemblokiran ini terjadi karena kesalahpahaman atau kesalahan sistem.
+Saya ingin mengajukan banding atas pemblokiran permanen terhadap akun WhatsApp saya dengan nomor ${num}. Saya yakin pemblokiran ini terjadi karena kesalahpahaman.
 
-Saya menggunakan akun ini untuk komunikasi pribadi dan bisnis kecil. Mohon tinjau kembali agar akun saya dapat dipulihkan.
+Saya menggunakan akun ini hanya untuk komunikasi pribadi. Mohon untuk meninjau kembali kasus saya.
 
-Terima kasih atas perhatian dan kerja samanya.
+Terima kasih.
 
 Hormat saya,
-${nama}`;
+${nama}
+Nomor WhatsApp: ${num}`;
   }else{
     bodyText=`Halo Tim WhatsApp,
 
-Saya ingin mengajukan peninjauan atas pemblokiran sementara akun saya (${num}). Mohon maaf jika ada aktivitas yang dianggap melanggar. Saya berjanji tidak akan menggunakan aplikasi modifikasi lagi.
+Saya ingin mengajukan permohonan peninjauan atas pemblokiran sementara pada akun WhatsApp saya dengan nomor ${num}. Mohon tinjau kembali agar akun saya dapat digunakan kembali.
 
-Terima kasih atas perhatian dan pengertiannya.
+Terima kasih.
 
 Hormat saya,
-${nama}`;
+${nama}
+Nomor WhatsApp: ${num}`;
   }
-
   const mailto=`mailto:support@support.whatsapp.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyText)}`;
   setTimeout(()=>{
     window.location.href=mailto;
@@ -384,4 +382,4 @@ clearBtn.addEventListener('click',()=>{
 });
 </script>
 </body>
-  </html>
+</html>
