@@ -2,7 +2,9 @@
    Source Code By : PutraaMods Official ✨
 */
 
-// --- PASSWORD LOGIN ---
+// ========================
+// PASSWORD LOGIN
+// ========================
 const TRUE_PASSWORD = 'PUTRAXCRAK';
 const splash = document.getElementById('splash');
 const navbar = document.getElementById('navbar');
@@ -13,7 +15,22 @@ const pwInput = document.getElementById('passwordInput');
 const pwBtn = document.getElementById('pwBtn');
 const pwMsg = document.getElementById('pwMsg');
 
-// --- NAVBAR & MENU ---
+pwBtn.addEventListener('click', ()=>{
+  if(pwInput.value.trim() === TRUE_PASSWORD){
+    splash.style.display='none';
+    navbar.style.display='flex';
+    showHome();
+  } else {
+    pwMsg.textContent='Password salah — coba lagi.';
+  }
+});
+pwInput.addEventListener('keydown', e=>{
+  if(e.key==='Enter') pwBtn.click();
+});
+
+// ========================
+// NAVBAR & MENU TOGGLE
+// ========================
 const menuBtn = document.getElementById('menuBtn');
 const menu = document.getElementById('menu');
 const homeLink = document.getElementById('homeLink');
@@ -21,46 +38,66 @@ const tipsLink = document.getElementById('tipsLink');
 const thnksLink = document.getElementById('ThnksToLink');
 const brandTop = document.getElementById('brandTop');
 
-// Brand click ke website
 brandTop.style.cursor = 'pointer';
-brandTop.addEventListener('click', ()=> window.open('https://putramods.vercel.app', '_blank') );
+brandTop.addEventListener('click', ()=> window.open('https://putramods.vercel.app', '_blank'));
 
-// --- MUSIC PLAYER ---
+menuBtn.addEventListener('click', ()=>{
+  menu.classList.toggle('show');
+  menuBtn.classList.toggle('active');
+});
+homeLink.addEventListener('click', showHome);
+tipsLink.addEventListener('click', showTips);
+thnksLink.addEventListener('click', showThnks);
+
+// ========================
+// PAGE DISPLAY FUNCTIONS
+// ========================
+function showHome(){
+  homePage.style.display='block';
+  tipsPage.style.display='none';
+  thnksPage.style.display='none';
+  menu.classList.remove('show');
+  menuBtn.classList.remove('active');
+}
+function showTips(){
+  homePage.style.display='none';
+  tipsPage.style.display='block';
+  thnksPage.style.display='none';
+  menu.classList.remove('show');
+  menuBtn.classList.remove('active');
+}
+function showThnks(){
+  homePage.style.display='none';
+  tipsPage.style.display='none';
+  thnksPage.style.display='block';
+  menu.classList.remove('show');
+  menuBtn.classList.remove('active');
+}
+
+// ========================
+// MUSIC PLAYER
+// ========================
 const playPauseBtn = document.getElementById('playPauseBtn');
 const bgMusic = document.getElementById('bgMusic');
 const musicStatus = document.getElementById('musicStatus');
 let isPlaying = false;
 
 playPauseBtn.addEventListener('click', ()=>{
-  if(!isPlaying){ bgMusic.play(); playPauseBtn.textContent='⏸️'; musicStatus.textContent='Memutar lagu...'; }
-  else{ bgMusic.pause(); playPauseBtn.textContent='▶️'; musicStatus.textContent='PutraMods Music'; }
+  if(!isPlaying){
+    bgMusic.play();
+    playPauseBtn.textContent = '⏸️';
+    musicStatus.textContent = 'Memutar lagu...';
+  } else {
+    bgMusic.pause();
+    playPauseBtn.textContent = '▶️';
+    musicStatus.textContent = 'PutraMods Music';
+  }
   isPlaying = !isPlaying;
 });
 
-// --- PAGE FUNCTIONS ---
-function showHome(){ homePage.style.display='block'; tipsPage.style.display='none'; thnksPage.style.display='none'; menu.classList.remove('show'); menuBtn.classList.remove('active'); }
-function showTips(){ homePage.style.display='none'; tipsPage.style.display='block'; thnksPage.style.display='none'; menu.classList.remove('show'); menuBtn.classList.remove('active'); }
-function showThnks(){ homePage.style.display='none'; tipsPage.style.display='none'; thnksPage.style.display='block'; menu.classList.remove('show'); menuBtn.classList.remove('active'); }
-
-// --- PASSWORD ---
-pwBtn.addEventListener('click', ()=>{
-  if(pwInput.value.trim() === TRUE_PASSWORD){
-    splash.style.display='none';
-    navbar.style.display='flex';
-    showHome();
-  }else{
-    pwMsg.textContent='Password salah — coba lagi.';
-  }
-});
-pwInput.addEventListener('keydown', e => { if(e.key==='Enter') pwBtn.click(); });
-
-// --- MENU TOGGLE ---
-menuBtn.addEventListener('click', ()=> { menu.classList.toggle('show'); menuBtn.classList.toggle('active'); });
-homeLink.addEventListener('click', showHome);
-tipsLink.addEventListener('click', showTips);
-thnksLink.addEventListener('click', showThnks);
-
-// --- FORM UNBAN ---
+// ========================
+// FORM UNBAN
+// ========================
 const nameEl = document.getElementById('name');
 const phoneEl = document.getElementById('phone');
 const bandEl = document.getElementById('bandOption');
@@ -80,8 +117,19 @@ function normalizePhone(raw){
 sendBtn.addEventListener('click', ()=>{
   const nama = nameEl.value.trim();
   const num = normalizePhone(phoneEl.value.trim());
-  if(!nama){ feedback.style.display='block'; feedback.style.color='#f87171'; feedback.textContent='Nama tidak boleh kosong.'; return; }
-  if(!num){ feedback.style.display='block'; feedback.style.color='#f87171'; feedback.textContent='Nomor WhatsApp tidak valid.'; return; }
+
+  if(!nama){
+    feedback.style.display='block';
+    feedback.style.color='#f87171';
+    feedback.textContent='Nama tidak boleh kosong.';
+    return;
+  }
+  if(!num){
+    feedback.style.display='block';
+    feedback.style.color='#f87171';
+    feedback.textContent='Nomor WhatsApp tidak valid.';
+    return;
+  }
 
   feedback.style.display='block';
   feedback.style.color='#0ef';
@@ -92,8 +140,46 @@ sendBtn.addEventListener('click', ()=>{
   let bodyText = '';
 
   if(band==='permanen'){
-    bodyText=`Halo Tim WhatsApp,
+    bodyText = `Halo Tim WhatsApp,
 
 Saya ingin mengajukan banding atas pemblokiran permanen terhadap akun WhatsApp saya dengan nomor ${num}. Saya yakin pemblokiran ini terjadi karena kesalahpahaman atau sistem yang salah mendeteksi aktivitas akun saya.
 
-Saya menggunakan akun ini hanya untuk berkomunikasi dengan keluarga, teman, dan keperluan pribadi/bisnis kecil. Mohon untuk meninj
+Saya menggunakan akun ini hanya untuk berkomunikasi dengan keluarga, teman, dan keperluan pribadi/bisnis kecil. Mohon untuk meninjau kembali kasus saya dan mempertimbangkan untuk mengaktifkan kembali akun tersebut.
+
+Terima kasih atas perhatian dan kerja samanya.
+
+Hormat saya,
+${nama}
+Nomor WhatsApp: ${num}`;
+  } else {
+    bodyText = `Halo Tim WhatsApp,
+
+Saya ingin mengajukan permohonan peninjauan atas pemblokiran sementara pada akun WhatsApp saya dengan nomor ${num}. Saya mohon maaf jika ada aktivitas yang dianggap melanggar kebijakan WhatsApp.
+
+Saya berkomitmen untuk mematuhi seluruh Ketentuan Layanan dan tidak akan menggunakan aplikasi modifikasi atau fitur yang tidak resmi di masa mendatang.
+
+Terima kasih atas perhatian dan pengertiannya.
+
+Hormat saya,
+${nama}
+Nomor WhatsApp: ${num}`;
+  }
+
+  const mailto = `mailto:support@support.whatsapp.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyText)}`;
+  setTimeout(()=>{
+    window.location.href = mailto;
+    setTimeout(()=>{
+      nameEl.value = '';
+      phoneEl.value = '';
+      bandEl.value = 'permanen';
+      feedback.style.display = 'none';
+    },2000);
+  },1000);
+});
+
+clearBtn.addEventListener('click', ()=>{
+  nameEl.value = '';
+  phoneEl.value = '';
+  bandEl.value = 'permanen';
+  feedback.style.display = 'none';
+});
