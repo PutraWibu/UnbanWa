@@ -106,10 +106,6 @@ function showPage(pageId) {
     localStorage.setItem('lastPage', pageId);
 }
 
-// Contoh pemanggilan
-function showHome() { showPage('homePage'); }
-function showTips() { showPage('tipsPage'); }
-function showThnks() { showPage('thnksPage'); }
 
 // ===== LOAD HALAMAN TERAKHIR SAAT REFRESH =====
 window.addEventListener('load', () => {
