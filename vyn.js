@@ -38,21 +38,18 @@ const tipsLink = document.getElementById('tipsLink');
 const thnksLink = document.getElementById('ThnksToLink');
 const brandTop = document.getElementById('brandTop');
 
-brandTop.style.cursor = 'pointer';
-brandTop.addEventListener('click', ()=> window.open('https://putramods.vercel.app', '_blank'));
-
 menuBtn.addEventListener('click', ()=>{
   menu.classList.toggle('show');
   menuBtn.classList.toggle('active');
-});
+}
 homeLink.addEventListener('click', showHome);
 tipsLink.addEventListener('click', showTips);
 thnksLink.addEventListener('click', showThnks);
 
-// ========================
+// =======================
 // PAGE DISPLAY FUNCTIONS
-// ========================
-function showHome(){
+// =============
+function showHome()
   homePage.style.display='block';
   tipsPage.style.display='none';
   thnksPage.style.display='none';
