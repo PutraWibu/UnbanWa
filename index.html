@@ -1,4 +1,3 @@
-<!-- Source Code By PutraaMods Official, Want code original? Github: PutraWibu -->
 <!doctype html>
 <html lang="id">
 <head>
@@ -42,6 +41,61 @@
 .music-player span {
   font-size: 13px;
   opacity: 0.8;
+}
+
+/* Hamburger Animasi */
+.hamburger {
+  width: 30px;
+  height: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.hamburger span {
+  display: block;
+  height: 4px;
+  background: var(--accent, #06b6d4);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+/* Ketika aktif / menu terbuka */
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Animasi menu dropdown */
+.menu {
+  display: none;
+  flex-direction: column;
+  background: rgba(7,18,38,0.95);
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  border-radius: 10px;
+  padding: 10px 0;
+  box-shadow: 0 5px 15px rgba(0,255,255,0.2);
+  transition: all 0.3s ease;
+  z-index: 999;
+}
+.menu.show {
+  display: flex;
+}
+.menu a {
+  padding: 8px 20px;
+  color: #0ef;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.menu a:hover {
+  background: rgba(0, 255, 255, 0.1);
+  border-radius: 5px;
 }
 </style>
 </head>
@@ -184,19 +238,22 @@ function showHome(){
   homePage.style.display='block';
   tipsPage.style.display='none';
   document.getElementById('ThnksTo').style.display='none';
-  menu.style.display='none';
+  menu.classList.remove('show');
+  menuBtn.classList.remove('active');
 }
 function showTips(){
   homePage.style.display='none';
   tipsPage.style.display='block';
   document.getElementById('ThnksTo').style.display='none';
-  menu.style.display='none';
+  menu.classList.remove('show');
+  menuBtn.classList.remove('active');
 }
 function showThnks(){
   homePage.style.display='none';
   tipsPage.style.display='none';
   document.getElementById('ThnksTo').style.display='block';
-  menu.style.display='none';
+  menu.classList.remove('show');
+  menuBtn.classList.remove('active');
 }
 
 pwBtn.addEventListener('click',()=>{
@@ -210,11 +267,6 @@ pwBtn.addEventListener('click',()=>{
   }
 });
 pwInput.addEventListener('keydown',e=>{if(e.key==='Enter')pwBtn.click();});
-
-menuBtn.addEventListener('click',()=>menu.style.display=menu.style.display==='flex'?'none':'flex');
-homeLink.addEventListener('click',showHome);
-tipsLink.addEventListener('click',showTips);
-thnksLink.addEventListener('click',showThnks);
 
 // 🎧 Music Player Script
 const playPauseBtn=document.getElementById('playPauseBtn');
@@ -233,6 +285,12 @@ playPauseBtn.addEventListener('click',()=>{
     musicStatus.textContent='PutraMods Music';
   }
   isPlaying=!isPlaying;
+});
+
+// Menu toggle dengan animasi
+menuBtn.addEventListener('click', () => {
+  menuBtn.classList.toggle('active'); // Animasi hamburger
+  menu.classList.toggle('show'); // Tampilkan / sembunyikan menu
 });
 
 // Form Unban
@@ -317,6 +375,11 @@ clearBtn.addEventListener('click',()=>{
   bandEl.value='permanen';
   feedback.style.display='none';
 });
+
+// Menu link navigasi
+homeLink.addEventListener('click',showHome);
+tipsLink.addEventListener('click',showTips);
+thnksLink.addEventListener('click',showThnks);
 </script>
 </body>
   </html>
