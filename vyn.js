@@ -12,7 +12,11 @@ const thnksPage = document.getElementById('ThnksTo');
 const pwInput = document.getElementById('passwordInput');
 const pwBtn = document.getElementById('pwBtn');
 const pwMsg = document.getElementById('pwMsg');
-
+const brandTop = document.getElementById('brandTop');
+brandTop.style.cursor = 'pointer';
+brandTop.addEventListener('click', () => {
+    window.open('https://putramods.vercel.app', '_blank'); // membuka di tab baru
+});
 // ===== NAVBAR & MENU =====
 const menuBtn = document.getElementById('menuBtn');
 const menu = document.getElementById('menu');
