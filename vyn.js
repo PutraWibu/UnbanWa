@@ -142,35 +142,85 @@ function normalizePhone(raw) {
     return s;
 }
 
-// Form unban send
-sendBtn.addEventListener('click', () => {
-    const name = nameEl.value.trim();
-    const phone = normalizePhone(phoneEl.value.trim());
-    const bandType = bandEl.value;
+// Form Unban
+const nameEl=document.getElementById('name');
+const phoneEl=document.getElementById('phone');
+const bandEl=document.getElementById('bandOption');
+const sendBtn=document.getElementById('sendBtn');
+const feedback=document.getElementById('feedback');
+const clearBtn=document.getElementById('clearBtn');
 
-    if (!name || !phone) {
-        feedback.style.display = 'block';
-        feedback.textContent = 'Isi semua field terlebih dahulu.';
-        return;
-    }
+function normalizePhone(raw){
+  if(!raw)return null;
+  let s=raw.replace(/[\s()-]/g,'');
+  if(/^0[0-9]+$/.test(s))s='+62'+s.slice(1);
+  if(/^62[0-9]+$/.test(s))s='+'+s;
+  if(/^\+[0-9]+$/.test(s))return s;
+  return null;
+}
 
-    const subject = encodeURIComponent('Permohonan Unban WhatsApp');
-    const body = encodeURIComponent(
-        `Halo Tim WhatsApp,\n\nNama: ${name}\nNomor: ${phone}\nJenis Banding: ${bandType}\n\nMohon bantuannya untuk meng-unban akun saya.\n\nTerima kasih.`
-    );
+sendBtn.addEventListener('click',()=>{
+  const nama=nameEl.value.trim();
+  const num=normalizePhone(phoneEl.value.trim());
+  if(!nama){
+    feedback.style.display='block';
+    feedback.style.color='#f87171';
+    feedback.textContent='Nama tidak boleh kosong.';
+    return;
+  }
+  if(!num){
+    feedback.style.display='block';
+    feedback.style.color='#f87171';
+    feedback.textContent='Nomor WhatsApp tidak valid.';
+    return;
+  }
+  feedback.style.display='block';
+  feedback.style.color='#0ef';
+  feedback.textContent='Menyiapkan email banding...';
+  const band=bandEl.value;
+  const subject=`Permohonan Banding Pemblokiran Akun WhatsApp (${num})`;
+  let bodyText='';
+  if(band==='permanen'){
+    bodyText=`Halo Tim WhatsApp,
 
-    const mailtoLink = `https://mail.google.com/mail/?view=cm&fs=1&to=support@whatsapp.com&su=${subject}&body=${body}`;
+Saya ingin mengajukan banding atas pemblokiran permanen terhadap akun WhatsApp saya dengan nomor ${num}. Saya yakin pemblokiran ini terjadi karena kesalahpahaman atau sistem yang salah mendeteksi aktivitas akun saya.
 
-    feedback.style.display = 'block';
-    feedback.textContent = 'Mengarahkan ke Gmail...';
+Saya menggunakan akun ini hanya untuk berkomunikasi dengan keluarga, teman, dan keperluan pribadi/bisnis kecil. Mohon untuk meninjau kembali kasus saya dan mempertimbangkan untuk mengaktifkan kembali akun tersebut.
 
-    window.open(mailtoLink, '_blank');
+Terima kasih atas perhatian dan kerja samanya.
+
+Hormat saya,
+${nama}
+Nomor WhatsApp: ${num}`;
+  }else{
+    bodyText=`Halo Tim WhatsApp,
+
+Saya ingin mengajukan permohonan peninjauan atas pemblokiran sementara pada akun WhatsApp saya dengan nomor ${num}. Saya mohon maaf jika ada aktivitas yang dianggap melanggar kebijakan WhatsApp.
+
+Saya berkomitmen untuk mematuhi seluruh Ketentuan Layanan dan tidak akan menggunakan aplikasi modifikasi atau fitur yang tidak resmi di masa mendatang.
+
+Terima kasih atas perhatian dan pengertiannya.
+
+Hormat saya,
+${nama}
+Nomor WhatsApp: ${num}`;
+  }
+
+  const mailto=`mailto:support@support.whatsapp.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyText)}`;
+  setTimeout(()=>{
+    window.location.href=mailto;
+    setTimeout(()=>{
+      nameEl.value='';
+      phoneEl.value='';
+      bandEl.value='permanen';
+      feedback.style.display='none';
+    },2000);
+  },1000);
 });
 
-// Clear form
-clearBtn.addEventListener('click', () => {
-    nameEl.value = '';
-    phoneEl.value = '';
-    bandEl.selectedIndex = 0;
-    feedback.style.display = 'none';
+clearBtn.addEventListener('click',()=>{
+  nameEl.value='';
+  phoneEl.value='';
+  bandEl.value='permanen';
+  feedback.style.display='none';
 });
