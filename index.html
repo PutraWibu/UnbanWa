@@ -1,3 +1,4 @@
+<!-- Source Code By PutraaMods Official, Want code original? Github: PutraWibu -->
 <!doctype html>
 <html lang="id">
 <head>
@@ -5,6 +6,44 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 <title>PutraMods Unban WhatsApp</title>
 <link rel="stylesheet" href="style.css">
+<style>
+/* 🎧 Pemutar Musik */
+.music-player {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(7, 18, 38, 0.8);
+  border: 1px solid var(--accent, #06b6d4);
+  border-radius: 14px;
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #0ef;
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+  z-index: 9999;
+  backdrop-filter: blur(6px);
+  transition: all 0.2s ease;
+}
+.music-player button {
+  background: none;
+  border: none;
+  color: #0ef;
+  font-size: 20px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.music-player button:hover {
+  transform: scale(1.2);
+  color: #fff;
+}
+.music-player span {
+  font-size: 13px;
+  opacity: 0.8;
+}
+</style>
 </head>
 <body>
 <div class="app">
@@ -119,6 +158,13 @@
 
 </div>
 
+<!-- 🎵 Pemutar Lagu -->
+<div class="music-player" id="musicPlayer">
+  <button id="playPauseBtn">▶️</button>
+  <span id="musicStatus">PutraMods Music</span>
+  <audio id="bgMusic" src="https://files.catbox.moe/9cyfk2.mp3"></audio>
+</div>
+
 <script>
 const TRUE_PASSWORD='PUTRAXCRAK';
 const splash=document.getElementById('splash');
@@ -169,6 +215,25 @@ menuBtn.addEventListener('click',()=>menu.style.display=menu.style.display==='fl
 homeLink.addEventListener('click',showHome);
 tipsLink.addEventListener('click',showTips);
 thnksLink.addEventListener('click',showThnks);
+
+// 🎧 Music Player Script
+const playPauseBtn=document.getElementById('playPauseBtn');
+const bgMusic=document.getElementById('bgMusic');
+const musicStatus=document.getElementById('musicStatus');
+let isPlaying=false;
+
+playPauseBtn.addEventListener('click',()=>{
+  if(!isPlaying){
+    bgMusic.play();
+    playPauseBtn.textContent='⏸️';
+    musicStatus.textContent='Memutar lagu...';
+  }else{
+    bgMusic.pause();
+    playPauseBtn.textContent='▶️';
+    musicStatus.textContent='PutraMods Music';
+  }
+  isPlaying=!isPlaying;
+});
 
 // Form Unban
 const nameEl=document.getElementById('name');
@@ -254,4 +319,4 @@ clearBtn.addEventListener('click',()=>{
 });
 </script>
 </body>
-</html>
+  </html>
