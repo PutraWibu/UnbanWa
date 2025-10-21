@@ -120,11 +120,10 @@ window.addEventListener('load', () => {
         showPage(lastPage); // tampilkan halaman terakhir
     }
 });
-/*
+
 homeLink.addEventListener('click', showHome);
 tipsLink.addEventListener('click', showTips);
 thnksLink.addEventListener('click', showThnks);
-*/
 // Music player toggle
 playPauseBtn.addEventListener('click', () => {
     if (!isPlaying) {
