@@ -35,44 +35,8 @@ const sendBtn = document.getElementById('sendBtn');
 const clearBtn = document.getElementById('clearBtn');
 const feedback = document.getElementById('feedback');
 
-// ===== SIMPAN HALAMAN TERAKHIR =====
-function showHome() {
-    homePage.style.display = 'block';
-    tipsPage.style.display = 'none';
-    thnksPage.style.display = 'none';
-    menu.classList.remove('show');
-    menuBtn.classList.remove('active');
-    localStorage.setItem('lastPage', 'homePage');
-}
 
-function showTips() {
-    homePage.style.display = 'none';
-    tipsPage.style.display = 'block';
-    thnksPage.style.display = 'none';
-    menu.classList.remove('show');
-    menuBtn.classList.remove('active');
-    localStorage.setItem('lastPage', 'tipsPage');
-}
-
-function showThnks() {
-    homePage.style.display = 'none';
-    tipsPage.style.display = 'none';
-    thnksPage.style.display = 'block';
-    menu.classList.remove('show');
-    menuBtn.classList.remove('active');
-    localStorage.setItem('lastPage', 'ThnksTo');
-}
-
-// ===== LOAD HALAMAN TERAKHIR SAAT REFRESH =====
-window.addEventListener('load', () => {
-    const lastPage = localStorage.getItem('lastPage');
-    if (lastPage) {
-        splash.style.display = 'none'; // langsung sembunyikan splash
-        const page = document.getElementById(lastPage);
-        if (page) page.style.display = 'block';
-    }
-});
-
+   
 // ----------------------- FUNCTIONS -----------------------
 
 // Show different pages
@@ -123,10 +87,44 @@ menuBtn.addEventListener('click', () => {
 });
 
 // Menu navigation
+// ----------------------- LOCAL STORAGE HALAMAN TERAKHIR -----------------------
+
+// Fungsi sembunyikan semua halaman
+function hideAllPages() {
+    homePage.style.display = 'none';
+    tipsPage.style.display = 'none';
+    thnksPage.style.display = 'none';
+}
+
+// Tampilkan halaman tertentu dan simpan di localStorage
+function showPage(pageId) {
+    hideAllPages();
+    const page = document.getElementById(pageId);
+    if(page) page.style.display = 'block';
+    menu.classList.remove('show');
+    menuBtn.classList.remove('active');
+    localStorage.setItem('lastPage', pageId);
+}
+
+// Contoh pemanggilan
+function showHome() { showPage('homePage'); }
+function showTips() { showPage('tipsPage'); }
+function showThnks() { showPage('thnksPage'); }
+
+// ===== LOAD HALAMAN TERAKHIR SAAT REFRESH =====
+window.addEventListener('load', () => {
+    const lastPage = localStorage.getItem('lastPage');
+    if(lastPage) {
+        splash.style.display = 'none'; // sembunyikan splash jika sudah login
+        navbar.style.display = 'flex';
+        showPage(lastPage); // tampilkan halaman terakhir
+    }
+});
+/*
 homeLink.addEventListener('click', showHome);
 tipsLink.addEventListener('click', showTips);
 thnksLink.addEventListener('click', showThnks);
-
+*/
 // Music player toggle
 playPauseBtn.addEventListener('click', () => {
     if (!isPlaying) {
