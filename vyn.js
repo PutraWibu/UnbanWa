@@ -35,6 +35,44 @@ const sendBtn = document.getElementById('sendBtn');
 const clearBtn = document.getElementById('clearBtn');
 const feedback = document.getElementById('feedback');
 
+// ===== SIMPAN HALAMAN TERAKHIR =====
+function showHome() {
+    homePage.style.display = 'block';
+    tipsPage.style.display = 'none';
+    thnksPage.style.display = 'none';
+    menu.classList.remove('show');
+    menuBtn.classList.remove('active');
+    localStorage.setItem('lastPage', 'homePage');
+}
+
+function showTips() {
+    homePage.style.display = 'none';
+    tipsPage.style.display = 'block';
+    thnksPage.style.display = 'none';
+    menu.classList.remove('show');
+    menuBtn.classList.remove('active');
+    localStorage.setItem('lastPage', 'tipsPage');
+}
+
+function showThnks() {
+    homePage.style.display = 'none';
+    tipsPage.style.display = 'none';
+    thnksPage.style.display = 'block';
+    menu.classList.remove('show');
+    menuBtn.classList.remove('active');
+    localStorage.setItem('lastPage', 'ThnksTo');
+}
+
+// ===== LOAD HALAMAN TERAKHIR SAAT REFRESH =====
+window.addEventListener('load', () => {
+    const lastPage = localStorage.getItem('lastPage');
+    if (lastPage) {
+        splash.style.display = 'none'; // langsung sembunyikan splash
+        const page = document.getElementById(lastPage);
+        if (page) page.style.display = 'block';
+    }
+});
+
 // ----------------------- FUNCTIONS -----------------------
 
 // Show different pages
